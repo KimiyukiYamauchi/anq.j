@@ -1,0 +1,88 @@
+.sub-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 5px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
+}
+.note {
+	margin-left: 10px;
+	font-size: 0.9em;
+	text-align: left;
+}
+
+table.editform,
+table.list {
+	font-size: 0.9em;
+	table-layout: fixed;
+	width: 500px;
+	border-collapse: collapse;
+	border-collapse: collapse;
+	margin: 15px;
+	white-space: normal;
+	text-align: center;
+}
+table.editform th,
+table.list th {
+	width: 150px;
+	padding: 5px;
+	border: 1px solid  #CCCCCC;
+	background-color: #E4E2DE;
+	empty-cells: show;
+	color: #333333;
+	font-weight: normal;
+}
+
+table.editform td,
+table.list td {
+	width: 350px;
+	padding: 5px;
+	border: 1px solid  #CCCCCC;
+	empty-cells: show;
+	vertical-align: middle;
+	text-align: left;
+}
+
+table.adminlist {
+	font-size: 0.9em;
+	table-layout: fixed;
+	width: 900px;
+	border-collapse: collapse;
+	border-collapse: collapse;
+	margin: 15px;
+	white-space: normal;
+	text-align: center;
+}
+
+table.adminlist th {
+	padding: 5px;
+	border: 1px solid  #CCCCCC;
+	background-color: #E4E2DE;
+	empty-cells: show;
+	color: #333333;
+	font-weight: normal;
+}
+th.width60 {
+	width: 60px;
+}
+th.width100 {
+	width: 100px;
+}
+th.width120 {
+	width: 120px;
+}
+th.width150 {
+	width: 150px;
+}
+th.width200 {
+	width: 200px;
+}
+table.adminlist td {
+	padding: 5px;
+	border: 1px solid  #CCCCCC;
+	empty-cells: show;
+	vertical-align: middle;
+	text-align: left;
+	word-break:break-all;
+	word-wrap: break-word;
+}
+
