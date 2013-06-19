@@ -102,4 +102,19 @@ function error_check($check_data){
 	return $error_list;
 }
 
+function db_connect(){
+	require_once("MDB2.php");
+
+	$dns = "mysql://dbuser:pass@localhost/phplesson?charset=utf8";
+
+	$db = MDB2::connect($dns);
+
+	if(PEAR::isError($db)){
+		print "MDB2 Connect Error";
+		die($db->getMessage());
+	}
+	
+	return $db;
+}
+
 ?>
