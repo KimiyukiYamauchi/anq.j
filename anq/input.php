@@ -1,7 +1,8 @@
 <?php
 //libsフォルダにある共通関数を読み込む
 //require_once("../../../libs/function.php");
-require_once("./function.php");
+//require_once("./function.php");
+require_once("../libs/function.php");
 
 //初期化関数を呼び出す
 init();

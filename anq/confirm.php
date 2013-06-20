@@ -1,5 +1,6 @@
 <?php
-require_once("./function.php");
+//require_once("./function.php");
+require_once("../libs/function.php");
 
 init();
 

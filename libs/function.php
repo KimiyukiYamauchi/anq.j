@@ -3,7 +3,8 @@
 function init() {
 	//MySmartyクラスの読み込み
 	//require_once($_SERVER["DOCUMENT_ROOT"]. "/../libs/MySmarty.class.php");
-	require_once("./MySmarty.class.php");
+	//require_once("./MySmarty.class.php");
+	require_once("MySmarty.class.php");
 	
 	//セッションを開始する
 	session_start();
