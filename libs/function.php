@@ -118,4 +118,52 @@ function db_connect(){
 	return $db;
 }
 
+//ログイン認証を行なう関数（ログインIDとパスワード
+function Authenticator($loginid , $password) { 
+
+	//データベースに接続する関数を呼び出す
+	$db=db_connect();
+
+	// PEARのDBライブラリにあるquoteSmartメソッドを使用して、SQLで使用してはいけない文字列をエスケープします。
+	//member_tテーブルのpasswordフィールドはMD5関数で暗号化された値が格納されています。
+	$q_loginid  = $loginid;
+	$q_password  = md5($password);
+	
+	//member_tにログインIDと暗号化したパスワードで認証データがあるかチェックするSQLを発行しています
+	//エスケープログインIDの値には「'」が付加されるので、「'」で囲っているのをはずします。
+	$sql = "
+	SELECT * 
+	FROM member_t 
+	WHERE login_id = ? 
+	AND password = ? 
+	AND del_flag = '0'";
+	
+	//PEARのDBライブラリのqueryメソッドを使用して、ログインチェックするSQLを実行しています
+	$sth = $db->prepare($sql, array('text', 'text'));
+	if(MDB2::isError($sth)) die("prepare エラー： ".$sth->getMessage());
+
+	$data = array($q_loginid, $q_password);
+
+	$res = $sth->execute($data);
+
+	if($res->numRows() > 0){
+		return true;
+	}else{
+		return false;
+	}
+
+} 
+
+//ログイン状態をチェックする関数
+function loginCheck() {
+	//「!isset($_SESSION['login_name'])」部分のisset関数は変数が使用されている場合はtrueを返し、
+	//使用されていない場合はfalseを返す関数です。
+	if (!isset($_SESSION['login_name'])) {
+		$url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . "/login.php";
+		header("Location: " . $url);
+		exit;
+	}
+	return true;
+}
+
 ?>
