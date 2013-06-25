@@ -6,7 +6,8 @@ require_once("../../libs/function.php");
 //初期化関数を呼び出す
 init();
 
-//ここに追加
+//ログイン状態のチェック
+loginCheck();
 
 // Smartyを生成する
 $smarty = new MySmarty(); 
