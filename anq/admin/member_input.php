@@ -26,6 +26,7 @@ if (isset($_POST["regist"])) {
 	if($login_id == ""){
 		$mes[] = "ログインIDを入力してください。";
 	}elseif(!preg_match("/^[a-zA-Z0-9]+$/", $login_id)){
+	//}elseif(strlen($login_id) !_ mb_strlen($login_id)){
 		$mes[] = "ログインIDには半角英数字で入力してください。";
 	}else{
 		$sql = "SELECT * FROM member_t WHERE login_id = ? and del_flag = '0'";
@@ -50,7 +51,27 @@ if (isset($_POST["regist"])) {
 	if(!count($mes)){
 
 		// データベースへの登録
-		$mes[] = "データベースの登録処理へ進む";
+		$password = md5($password);
+		
+		$del_flag = 0;
+		$create_datetime = date("Y-m-d H:i:s");
+
+		$db = db_connect();
+
+		$sth = $db->prepare('insert into member_t(name, login_id, password, del_flag, create_datetime) values(?,?,?,?,?)');
+
+		if(MDB2::isError($sth)){
+			die("Can't prepare: " .$sth->getMessage());
+		}
+		
+		$ret = $sth->execute(
+			array($name, $login_id, $password, $del_flag, $create_datetime));
+
+		if(MDB2::isError($ret)){
+			die("Can't execute: " .$ret->getMessage());
+		}
+
+		$_POST = array();
 	}
 
 }
