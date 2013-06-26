@@ -1,6 +1,6 @@
 <?php
 define("ROOT_DIR", $_SERVER["DOCUMENT_ROOT"] .
-"/php/phppro/smarty");
+"/php/phppro/anq.j");
 
 require_once(ROOT_DIR ."/libs/Smarty.class.php");
 
