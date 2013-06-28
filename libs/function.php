@@ -166,4 +166,41 @@ function loginCheck() {
 	return true;
 }
 
+function pager_search($sql, $db){
+
+	require_once('Pager/Pager.php');
+	$pagelength = "1";	// １ページに表示する件数
+	
+	$data_array = array();
+
+	$db->setFetchMode(MDB2_FETCHMODE_ASSOC);
+	$anq_list = $db->queryAll($sql);  
+
+	$total = count($anq_list);
+
+	$page = array(
+		"itemData" => $anq_list,
+		"totalItems" => $total,
+		"perPage" => $pagelength,
+		"mode" => "Jumping",
+		"altFirst" => "First",
+		"altPrev" => "",
+		"prevImg" => "&lt;&lt: 前を表示",
+		"altNext" => "",
+		"nextImg" => "次を表示 &gt;&gt;",
+		"altLast" => "Last",
+		"altPage" => "",
+		"separator" => " ",
+		"append"=> 1,
+		"urlVar" => "page"
+	);
+
+	$pager = Pager::factory($page);
+
+	$data_array["data"] = $pager->getPageData();
+
+	$data_array["links"] = $pager->links;
+
+	return $data_array;
+}
 ?>
