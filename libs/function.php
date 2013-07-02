@@ -169,7 +169,8 @@ function loginCheck() {
 function pager_search($sql, $db){
 
 	require_once('Pager/Pager.php');
-	$pagelength = "1";	// １ページに表示する件数
+	//$pagelength = "1";	// １ページに表示する件数
+	$pagelength = "3";	// １ページに表示する件数
 	
 	$data_array = array();
 

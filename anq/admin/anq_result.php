@@ -8,6 +8,14 @@ init();
 //ログイン状態をチェックする関数を呼び出す
 loginCheck();
 
+// newが指定された場合は検索キーワードクリア
+if(isset($_GET["mode"]) && $_GET["mode"] == "new"){
+	$_SESSION["keyword"] = "";
+	$_SESSION["sex_key"] = "";
+	$_SESSION["age_key"] = "";
+	$_SESSION["where"] = "";
+}
+
 //データベースに接続する関数を呼び出す
 $db = db_connect();
 
