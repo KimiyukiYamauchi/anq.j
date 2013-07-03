@@ -53,7 +53,7 @@
 	</tr>
 	{{/if}}
 	<tr>
-		<td>{{$anq.name}}</td>
+		<td><a href="modify.php?id={{$anq.anq_id}}">{{$anq.name}}</a></td>
 		<td>{{$sex_value[$anq.sex]}}</td>
 		<td>{{$age_value[$anq.age]}}</td>
 		<td>

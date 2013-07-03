@@ -1,12 +1,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
 <title>アンケートフォーム</title>
 </head>
 <body>
 <div class="sub-title">
-アンケートフォーム
+アンケート修正フォーム
 </div>
 
 {{if $error_list}}
@@ -17,7 +17,7 @@
 </div>
 {{/if}}
 
-<form action="input.php" method="post">
+<form action="modify.php" method="post">
 <table class="editform">
 <tr>
 <th>名前</th>
@@ -53,7 +53,10 @@
 <td><textarea rows="10" cols="40" name="comment">{{$smarty.session.comment}}</textarea></td>
 </tr>
 <tr>
-<td colspan="2"><input type="submit" name="confirm" value="登録確認"></td>
+<td colspan="2">
+<input type="submit" name="confirm" value="修正確認" />
+<input type="submit" name="cancel" value="キャンセル" />
+</td>
 </tr>
 </table>
 </form>
