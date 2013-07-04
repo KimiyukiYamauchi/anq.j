@@ -3,13 +3,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/base.css" rel="stylesheet" type="text/css" />
 <title>アンケート一覧画面</title>
+<script type="text/javascript">
+<!--
+function anq_delete(){
+	if(window.confirm("選択した項目を削除します。よろしいですか？")){
+		document.anq_result.submit();
+	}
+}
+// -->
+</script>
 </head>
 
 <body>
 <div class="sub-title">
 アンケート一覧
 </div>
-<form action="anq_result.php" method="post">
+<form action="anq_result.php" name="anq_result" method="post">
 <table class="editform">
 <tr>
 <th>検索キーワード</th>
@@ -44,6 +53,7 @@
 	{{foreach item=anq key=key from=$anq_list|smarty:nodefaults name=anq_list}}
 	{{if $smarty.foreach.anq_list.first}}
 	<tr>
+		<th class="width60">削除</th>
 		<th class="width100">名前</th>
 		<th class="width60">性別</th>
 		<th class="width60">年代</th>
@@ -53,6 +63,7 @@
 	</tr>
 	{{/if}}
 	<tr>
+		<td><input type="checkbox" name="del_id[]" value="{{$anq.anq_id}}" /></td>
 		<td><a href="modify.php?id={{$anq.anq_id}}">{{$anq.name}}</a></td>
 		<td>{{$sex_value[$anq.sex]}}</td>
 		<td>{{$age_value[$anq.age]}}</td>
@@ -73,7 +84,13 @@
 		<td colspan="6">アンケートデータはありません。</td>
 	</tr>
 	{{/foreach}}
+	<tr>
+	<td colspan="7" align="right">
+	<input type="button" onclick = "anq_delete();" value="選択したアンケートを削除" />
+	</td>
+	</tr>
 </table>
+<input type="button" value="検索結果のCSV出力" onclick="location.href='anq_csvout.php?mode=search'" />
 
 <div>
 {{$links|smarty:nodefaults}}

@@ -8,6 +8,25 @@ init();
 //ログイン状態をチェックする関数を呼び出す
 loginCheck();
 
+//データベースに接続する関数を呼び出す
+$db = db_connect();
+
+if(isset($_POST["del_id"]) && is_array($_POST["del_id"])){
+	foreach($_POST["del_id"] as $del_id){
+		if(!is_numeric($del_id)) continue;
+		$del_id_list[] = $db->quote($del_id);
+	}
+
+	$where_id = implode(", ", $del_id_list);
+
+	$sql = "UPDATE anq_t SET del_flag = '1' WHERE anq_id IN ({$where_id})";
+	$res = $db->query($sql);
+	if(MDB2::isError($res)){
+		print "エラーが発生しました。<br />操作をやりなおしてください";
+		exit;
+	}
+}
+
 // newが指定された場合は検索キーワードクリア
 if(isset($_GET["mode"]) && $_GET["mode"] == "new"){
 	$_SESSION["keyword"] = "";
@@ -15,9 +34,6 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "new"){
 	$_SESSION["age_key"] = "";
 	$_SESSION["where"] = "";
 }
-
-//データベースに接続する関数を呼び出す
-$db = db_connect();
 
 // 検索文をセットする変数
 $where = "";
